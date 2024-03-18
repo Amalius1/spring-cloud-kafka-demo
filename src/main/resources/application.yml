@@ -24,8 +24,20 @@ spring:
   config:
     import: "optional:configserver:http://localhost:8888"
 
-logging:
-  level:
-    org.springframework.cloud: DEBUG
-    org.springframework.kafka: DEBUG
+---
+#minio
+minio:
+  endpoint: http://localhost:9000
+  accessKey: minio
+  secretKey: minio123
+  region: eu-west-1
+  bucket: spring-cloud-config
 
+app:
+  config-file-name: config-file.json
+
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB # Set maximum file size
+      max-request-size: 12MB # Set maximum request size
